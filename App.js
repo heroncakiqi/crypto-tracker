@@ -24,7 +24,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Header />
-        <List />
+        <List data={this.state.data} />
       </View>
     );
   }
