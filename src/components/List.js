@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView, Text, NestedScrollView  } from 'react-native';
 
 import Card from './Card';
 
@@ -7,7 +7,7 @@ class List extends Component {
   render() {
    const { data } = this.props
     return (
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView style={{marginBottom: 60}} showsVerticalScrollIndicator={false}>
         {
           data.map(item => (
             <Card key={item.id} item={item} />
@@ -18,5 +18,6 @@ class List extends Component {
     )
   }
 }
+
 
 export default List;

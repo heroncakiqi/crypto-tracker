@@ -10,18 +10,30 @@ const Card = (props) => {
     <View style={styles.contanierStyle}>
       <View style={styles.sectionOne}>
         <View style={styles.logo}>
-          <Image style={styles.image} source={{uri: images[props.item.symbol]}} />
-          <Text> {props.item.symbol} | {props.item.name}</Text>
+        {images[props.item.symbol] && <Image style={styles.image} source={{uri: images[props.item.symbol]}} />}
+          <Text> <Text style={{fontWeight: 'bold'}} >{props.item.symbol}</Text> | {props.item.name}</Text>
         </View>
-        <Text>{props.item.quotes.EUR.price.toFixed(2)}&euro;</Text>
+        <View style={styles.price}>
+          <Text style={{fontWeight: 'bold'}}>{props.item.quotes.EUR.price.toFixed(2)}&euro;</Text>
+        </View>
       </View>
       <View style={styles.sectionTwo}>
-        <Text style={twentyFour >= 0 ? { color: '#2ECC71'} : { color: 'red'}}>
-          <Text style={{color: 'black'}}>24h: </Text>{twentyFour}%
-        </Text>
-        <Text style={twentyFour >= 0 ? { color: '#2ECC71'} : { color: 'red'}}>
-         <Text style={{color: 'black'}}>7h: </Text>{sevenDay}%
-        </Text>
+        <View style={styles.twentyFour}>
+          <Text>
+            <Text> 24h: </Text>
+              <Text style={{color:  twentyFour >= 0 ?  '#2ECC71' :'red', fontWeight: 'bold'}}>
+                {twentyFour}% 
+              </Text>
+          </Text>
+        </View>
+        <View style={styles.sevenDay}>
+          <Text>
+            <Text>7d: </Text>
+              <Text style={{color:  sevenDay >= 0 ?  '#2ECC71' :'red', fontWeight: 'bold'}}>
+                {sevenDay}%
+              </Text>
+          </Text>
+        </View>
       </View>
     </View>
   );
@@ -32,17 +44,20 @@ const styles = {
     borderWidth: 0,
     borderColor: '#ddd',
     borderBottomWidth: 2,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    padding: 5,
-    height: 100,
+    elevation: 0.5,
+    padding: 20,
+    paddingLeft: 35,
+    paddingRight: 35,
+    height: 110,
   },
   sectionOne: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    borderWidth: 0,
+    borderColor: '#f5f5f5',
+    borderBottomWidth: 1,
+
   },
   sectionTwo: {
     flex:1,
@@ -50,12 +65,31 @@ const styles = {
     justifyContent: 'space-between',
   },
   image: {
-    height: 25,
-    width: 25
+    position: "absolute",
+    left: -20,
+    height: 20,
+    width: 20
   },
   logo: {
     flex: 1 ,
-    flexDirection: 'row'
+    flexDirection: 'row',
+  
+  },
+  price: {
+    flex: 1,
+    alignItems: 'flex-end',
+
+  },
+  twentyFour: {
+    flex: 1,
+    justifyContent: 'flex-end',
+   
+  },
+  sevenDay: {
+    flex: 1,
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    
   }
 };
 
